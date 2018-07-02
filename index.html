@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TEST JS API GOOGLE MAPS </title>
+</head>
+<body>
+	<button onclick="findMe()">My station</button>
+	<div id="map"></div>
+	<script>
+		function findMe(){
+			var output = document.getElementById('map');
+			if (navigator.geolocation) {
+				output.innerHTML = "<p> your browser supports this functionality </p>";
+			}else {
+				output.innerHTML = "<p> your browser does not support this functionality </p>";
+			}
+			function localizacion(posicion){
+				var latitude = posicion.coords.latitude;
+				var longitude = posicion.coords.longitude;
+				console.log(latitude)
+
+				output.innerHTML = "<p>Latitude :"+latitude+"<br>longitude :"+longitude+"</p>";
+			}
+			function error(){
+				output.innerHTML = "<p> Could not find your location </p>";
+			}
+			navigator.geolocation.getCurrentPosition(localizacion, error);
+		}
+	</script>
+</body>
+</html>
